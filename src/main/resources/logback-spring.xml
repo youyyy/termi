@@ -9,9 +9,9 @@
     <!--  mac电脑不能在根目录建目录，所以修改为相对路径，不影响服务器日志采集  -->
     <property name="LOG_PATH" value="./logs"/>
     <springProperty scope="context" name="spring.application.name" source="spring.application.name"/>
-<!--    <springProperty scope="context" name="ding.robot.error-log.token" source="ding.robot.error-log.token"/>-->
-<!--    <springProperty scope="context" name="ding.robot.warn-log.token" source="ding.robot.warn-log.token"/>-->
-<!--    <springProperty scope="context" name="ding.robot.error-log.secret" source="ding.robot.error-log.secret"/>-->
+    <!--    <springProperty scope="context" name="ding.robot.error-log.token" source="ding.robot.error-log.token"/>-->
+    <!--    <springProperty scope="context" name="ding.robot.warn-log.token" source="ding.robot.warn-log.token"/>-->
+    <!--    <springProperty scope="context" name="ding.robot.error-log.secret" source="ding.robot.error-log.secret"/>-->
     <property name="ALARM_LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%20.20(%thread)][%-40.40(%logger{40})]:[%tid] [DD:%X{dd.trace_id}] %msg%n"/>
 
@@ -26,7 +26,7 @@
 <!--            <pattern>${CONSOLE_LOG_PATTERN_NO_CLR}</pattern>-->
 <!--        </layout>-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level ${PID:-} %thread %logger{40} - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%level] [%X{CLIENT}] [%X{TRACE-ID}] [${PID:-}] [%thread] [%logger{40}:%line] - %msg%n</pattern>
         </encoder>
     </appender>
     <!--ding alarm appender settings !end-->
@@ -45,40 +45,40 @@
 <!--            <pattern>${FILE_LOG_PATTERN}</pattern>-->
 <!--        </layout>-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level ${PID:-} %thread %logger{40} - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%level] [%X{CLIENT}] [%X{TRACE-ID}] [${PID:-}] [%thread] [%logger{40}:%line] - %msg%n</pattern>
         </encoder>
     </appender>
 
-<!--    <appender name="dingAlarm" class="com.xd.irs.thomas.app.config.DingTalkAppenderConfig">-->
-<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
-<!--            <level>ERROR</level>-->
-<!--            <onMatch>ACCEPT</onMatch>-->
-<!--            <onMismatch>DENY</onMismatch>-->
-<!--        </filter>-->
-<!--        <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
-<!--            <pattern>${ALARM_LOG_PATTERN}</pattern>-->
-<!--        </layout>-->
-<!--        <token>${ding.robot.error-log.token}</token>-->
-<!--        <title>irs-thomas-${spring.profiles.active}</title>-->
-<!--    </appender>-->
+    <!--    <appender name="dingAlarm" class="com.xd.irs.thomas.app.config.DingTalkAppenderConfig">-->
+    <!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+    <!--            <level>ERROR</level>-->
+    <!--            <onMatch>ACCEPT</onMatch>-->
+    <!--            <onMismatch>DENY</onMismatch>-->
+    <!--        </filter>-->
+    <!--        <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
+    <!--            <pattern>${ALARM_LOG_PATTERN}</pattern>-->
+    <!--        </layout>-->
+    <!--        <token>${ding.robot.error-log.token}</token>-->
+    <!--        <title>irs-thomas-${spring.profiles.active}</title>-->
+    <!--    </appender>-->
 
-<!--    <appender name="qwWarn" class="com.xd.irs.thomas.app.config.DingTalkAppenderConfig">-->
-<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
-<!--            <level>WARN</level>-->
-<!--            <onMatch>ACCEPT</onMatch>-->
-<!--            <onMismatch>DENY</onMismatch>-->
-<!--        </filter>-->
-<!--        <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
-<!--            <pattern>${ALARM_LOG_PATTERN}</pattern>-->
-<!--        </layout>-->
-<!--        <token>${ding.robot.warn-log.token}</token>-->
-<!--        <title>irs-thomas-${spring.profiles.active}</title>-->
-<!--    </appender>-->
+    <!--    <appender name="qwWarn" class="com.xd.irs.thomas.app.config.DingTalkAppenderConfig">-->
+    <!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+    <!--            <level>WARN</level>-->
+    <!--            <onMatch>ACCEPT</onMatch>-->
+    <!--            <onMismatch>DENY</onMismatch>-->
+    <!--        </filter>-->
+    <!--        <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">-->
+    <!--            <pattern>${ALARM_LOG_PATTERN}</pattern>-->
+    <!--        </layout>-->
+    <!--        <token>${ding.robot.warn-log.token}</token>-->
+    <!--        <title>irs-thomas-${spring.profiles.active}</title>-->
+    <!--    </appender>-->
 
     <root level="info">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
-<!--        <appender-ref ref="dingAlarm"/>-->
-<!--        <appender-ref ref="qwWarn"/>-->
+        <!--        <appender-ref ref="dingAlarm"/>-->
+        <!--        <appender-ref ref="qwWarn"/>-->
     </root>
 </configuration>
