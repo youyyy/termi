@@ -14,6 +14,9 @@ public class IException extends RuntimeException {
         super(message);
         code = ResultCodeMsgEnum.BIZ_ERR.getCode();
     }
+    public IException() {
+        code = ResultCodeMsgEnum.SYS_ERR.getCode();
+    }
     public IException(ResultCodeMsgEnum enumValue) {
         super(enumValue.getMsg());
         this.code = enumValue.getCode();

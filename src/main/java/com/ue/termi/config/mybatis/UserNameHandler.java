@@ -39,18 +39,21 @@ public class UserNameHandler extends BaseTypeHandler<String> {
     @Override
     public String getNullableResult(ResultSet resultSet, String s) throws SQLException {
         String name = resultSet.getString(s);
-        return "name=null";
+//        return "name=null";
+        return name;
     }
 
     @Override
     public String getNullableResult(ResultSet resultSet, int i) throws SQLException {
         String name = resultSet.getString(i);
-        return "name=null";
+//        return "name=null";
+        return name;
     }
 
     @Override
     public String getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         String name = callableStatement.getString(i);
-        return "name=null";
+//        return "name=null";
+        return name;
     }
 }
