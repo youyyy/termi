@@ -15,12 +15,15 @@ package com.ue.termi.biz;/*
 */
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.ue.termi.controller.wx.TextMessage;
 import com.ue.termi.entity.WxMsgInfo;
+import com.ue.termi.rpc.ChatGptApi;
 import com.ue.termi.service.WxMsgInfoService;
 import com.ue.termi.util.DtoMapper;
 import com.ue.termi.util.WxMessageUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,6 +39,7 @@ import java.util.Map;
  * @date 2023-04-04 14:02
  **/
 @Service
+@Slf4j
 public class WxMessageServiceImpl implements WxMessageService {
     @Resource
     private WxMsgInfoService wxMsgInfoService;
@@ -49,6 +53,7 @@ public class WxMessageServiceImpl implements WxMessageService {
     @Override
     public String messageHandle(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String> parseXml = WxMessageUtil.parseXml(request);
+        log.info("messageHandle parseXml={}", JSONUtil.toJsonPrettyStr(parseXml));
         //
         TextMessage textMessage = new TextMessage();
         textMessage.setToUserName(parseXml.get("FromUserName"));
@@ -56,9 +61,15 @@ public class WxMessageServiceImpl implements WxMessageService {
         textMessage.setCreateTime(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
         textMessage.setMsgType(WxMessageUtil.RESP_MESSAGE_TYPE_TEXT);
         if ("text".equals(parseXml.get("MsgType"))){
-            // todo 转换
-            String req = parseXml.get("Content");
-            String res = "游移说：" + req;
+            // 转换
+            String content = parseXml.get("Content");
+            String result = "";
+            try {
+                result = ChatGptApi.getBatchChat(textMessage.getToUserName(), content);
+            }catch (Exception e){
+                result  = "不好意思，我没听懂你在说啥~";
+            }
+            String res = "游移说：" + result;
             textMessage.setContent(res);
         }else {
             textMessage.setContent("目前仅支持文本呦~");
