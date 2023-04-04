@@ -67,6 +67,7 @@ public class WxMessageServiceImpl implements WxMessageService {
             try {
                 result = ChatGptApi.getBatchChat(textMessage.getToUserName(), content);
             }catch (Exception e){
+                log.error("异常",e);
                 result  = "不好意思，我没听懂你在说啥~";
             }
             String res = "游移说：" + result;
