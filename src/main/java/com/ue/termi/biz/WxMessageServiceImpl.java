@@ -25,6 +25,7 @@ import com.ue.termi.util.DtoMapper;
 import com.ue.termi.util.WxMessageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -64,11 +65,16 @@ public class WxMessageServiceImpl implements WxMessageService {
             // 转换
             String content = parseXml.get("Content");
             String result = "";
+            StopWatch stopWatch = new StopWatch("chatgpt");
+            stopWatch.start();
             try {
                 result = ChatGptApi.getBatchChat(textMessage.getToUserName(), content);
+                stopWatch.stop();
             }catch (Exception e){
                 log.error("异常",e);
                 result  = "不好意思，我没听懂你在说啥~";
+            }finally {
+                log.info("messageHandle request={},result={},stopWatch={}", content, result, stopWatch.prettyPrint());
             }
             String res = "游移说：" + result;
             textMessage.setContent(res);
