@@ -15,13 +15,9 @@ package com.ue.termi.util;/*
 */
 
 import cn.hutool.crypto.digest.DigestUtil;
-import org.thymeleaf.expression.Lists;
-import sun.security.rsa.RSASignature;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author youyi

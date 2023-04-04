@@ -6,6 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.ue.termi.entity.WxMsgInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="wxSnapshot" column="wx_snapshot" jdbcType="VARCHAR"/>
             <result property="toUserName" column="to_user_name" jdbcType="VARCHAR"/>
             <result property="fromUserName" column="from_user_name" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
@@ -19,9 +20,9 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,to_user_name,from_user_name,
-        create_time,msg_type,content,
-        creater_time,updater_time,creater_id,
-        updater_id,deleted
+        id,wx_snapshot,to_user_name,
+        from_user_name,create_time,msg_type,
+        content,creater_time,updater_time,
+        creater_id,updater_id,deleted
     </sql>
 </mapper>
