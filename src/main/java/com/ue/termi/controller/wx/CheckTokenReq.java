@@ -13,11 +13,20 @@ package com.ue.termi.controller.wx;/*
            (((__) (__)))
    高山仰止,景行行止.虽不能至,心向往之。
 */
+
+import lombok.Data;
+
 /**
- * @program termi
- * @description 
  * @author youyi
+ * @program termi
+ * @description
  * @date 2023-04-04 11:26
  **/
- public class CheckTokenReq {
+@Data
+public class CheckTokenReq {
+    private String ToUserName;
+    private String FromUserName;
+    private Long CreateTime;
+    private String MsgType;
+    private String Content;
 }
