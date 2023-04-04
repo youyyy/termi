@@ -1,6 +1,7 @@
 package com.ue.termi.util.log;
 
 import cn.hutool.json.JSONUtil;
+import com.alibaba.druid.support.json.JSONUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
@@ -19,8 +20,8 @@ public class LogUtil {
                     Objects.nonNull(controllerRequest.getHeader()) ? controllerRequest.getHeader().getOrDefault("x-login-session", null) : null,
                     controllerRequest.getUserId(),
                     controllerRequest.getXtoken(),
-                    JSONUtil.parse(controllerRequest.getParameters()),
-                    JSONUtil.parse(controllerRequest.getBody()));
+                    JSONUtil.toJsonPrettyStr(controllerRequest.getParameters()),
+                    JSONUtil.toJsonPrettyStr(controllerRequest.getBody()));
         } else {
             log.info("This is a request start.uri={},userId={},param={},body={}", null, null, null, null);
         }
@@ -34,9 +35,9 @@ public class LogUtil {
                     Objects.nonNull(controllerRequest.getHeader()) ? controllerRequest.getHeader().getOrDefault("x-login-session", null) : null,
                     controllerRequest.getUserId(),
                     controllerRequest.getXtoken(),
-                    JSONUtil.parse(controllerRequest.getParameters()),
-                    JSONUtil.parse(controllerRequest.getBody()),
-                    JSONUtil.parse(response));
+                    JSONUtil.toJsonPrettyStr(controllerRequest.getParameters()),
+                    JSONUtil.toJsonPrettyStr(controllerRequest.getBody()),
+                    JSONUtil.toJsonPrettyStr(response));
         } else {
             log.info("This is a request response.uri={},userId={},param={},body={},response={}", null, null, null, null, JSONUtil.parse(response));
         }

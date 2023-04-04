@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ue.termi.mapper.WxMsgInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.ue.termi.entity.WxMsgInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="toUserName" column="to_user_name" jdbcType="VARCHAR"/>
+            <result property="fromUserName" column="from_user_name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+            <result property="msgType" column="msg_type" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="createrTime" column="creater_time" jdbcType="TIMESTAMP"/>
+            <result property="updaterTime" column="updater_time" jdbcType="TIMESTAMP"/>
+            <result property="createrId" column="creater_id" jdbcType="VARCHAR"/>
+            <result property="updaterId" column="updater_id" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,to_user_name,from_user_name,
+        create_time,msg_type,content,
+        creater_time,updater_time,creater_id,
+        updater_id,deleted
+    </sql>
+</mapper>

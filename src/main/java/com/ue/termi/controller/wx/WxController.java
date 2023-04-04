@@ -14,10 +14,13 @@ package com.ue.termi.controller.wx;/*
    高山仰止,景行行止.虽不能至,心向往之。
 */
 
+import com.ue.termi.biz.WxMessageService;
 import com.ue.termi.util.WxUtil;
-import com.ue.termi.vo.ResponseResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,8 @@ import java.util.Objects;
 @RequestMapping("/wx")
 public class WxController {
 
+    @Resource
+    private WxMessageService wxMessageService;
     @GetMapping("/checkValid")
     public String testMessageHandler(
             @RequestParam(name = "signature") String signature,
@@ -43,10 +48,9 @@ public class WxController {
         return "failed";
     }
 
-    @PostMapping("/messageHandler")
-    public ResponseResult<?> messageHandler() {
-
-        return ResponseResult.success();
+    @PostMapping("/checkValid")
+    public String messageHandler(HttpServletRequest request, HttpServletResponse response) {
+        return wxMessageService.messageHandle(request, response);
     }
 
 }

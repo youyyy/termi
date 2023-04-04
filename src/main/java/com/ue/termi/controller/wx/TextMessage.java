@@ -23,7 +23,7 @@ import lombok.Data;
  * @date 2023-04-04 11:26
  **/
 @Data
-public class CheckTokenReq {
+public class TextMessage {
     private String ToUserName;
     private String FromUserName;
     private Long CreateTime;
