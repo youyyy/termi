@@ -14,9 +14,9 @@ package com.ue.termi.biz;/*
    高山仰止,景行行止.虽不能至,心向往之。
 */
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
 import com.ue.termi.controller.wx.TextMessage;
-import com.ue.termi.biz.WxMessageService;
 import com.ue.termi.entity.WxMsgInfo;
 import com.ue.termi.service.WxMsgInfoService;
 import com.ue.termi.util.DtoMapper;
@@ -53,8 +53,7 @@ public class WxMessageServiceImpl implements WxMessageService {
         TextMessage textMessage = new TextMessage();
         textMessage.setToUserName(parseXml.get("FromUserName"));
         textMessage.setFromUserName(parseXml.get("ToUserName"));
-        Date date = new Date();
-        textMessage.setCreateTime(date.getTime());
+        textMessage.setCreateTime(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
         textMessage.setMsgType(WxMessageUtil.RESP_MESSAGE_TYPE_TEXT);
         if ("text".equals(parseXml.get("MsgType"))){
             // todo 转换

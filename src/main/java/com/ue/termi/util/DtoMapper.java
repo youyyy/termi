@@ -30,10 +30,10 @@ import org.mapstruct.factory.Mappers;
 public interface DtoMapper {
     DtoMapper INSTANCE = Mappers.getMapper(DtoMapper.class);
 
-    @Mapping(expression = "java(textMessage.getToUserName())",target = "toUserName")
-    @Mapping(expression = "java(textMessage.getFromUserName())",target = "fromUserName")
-    @Mapping(expression = "java(textMessage.getCreateTime())",target = "createTime")
-    @Mapping(expression = "java(textMessage.getMsgType())",target = "msgType")
-    @Mapping(expression = "java(textMessage.getContent())",target = "content")
+//    @Mapping(expression = "java(textMessage.getToUserName())",target = "toUserName")
+//    @Mapping(expression = "java(textMessage.getFromUserName())",target = "fromUserName")
+//    @Mapping(expression = "java(textMessage.getCreateTime())",target = "createTime")
+//    @Mapping(expression = "java(textMessage.getMsgType())",target = "msgType")
+//    @Mapping(expression = "java(textMessage.getContent())",target = "content")
     WxMsgInfo req2Entity(TextMessage textMessage);
 }

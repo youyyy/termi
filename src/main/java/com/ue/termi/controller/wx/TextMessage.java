@@ -26,7 +26,7 @@ import lombok.Data;
 public class TextMessage {
     private String ToUserName;
     private String FromUserName;
-    private Long CreateTime;
+    private String CreateTime;
     private String MsgType;
     private String Content;
 }
