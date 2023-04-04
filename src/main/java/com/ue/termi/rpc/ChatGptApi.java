@@ -14,6 +14,7 @@ package com.ue.termi.rpc;/*
    高山仰止,景行行止.虽不能至,心向往之。
 */
 
+import cn.hutool.json.JSONUtil;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.completion.chat.ChatMessage;
@@ -85,7 +86,9 @@ public class ChatGptApi {
                 .model(chatModel)
                 .messages(chatMessages)
                 .build();
+        log.info("getOneChat req={}",newChat);
         ChatCompletionResult result = openAiService.createChatCompletion(chatCompletionRequest);
+        log.info("getOneChat res={}", JSONUtil.toJsonPrettyStr(result));
         ChatMessage message = result.getChoices().get(0).getMessage();
         chatMessages.add(message);
         chatMap.put(user, chatMessages);
