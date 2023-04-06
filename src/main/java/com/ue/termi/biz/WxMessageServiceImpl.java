@@ -68,7 +68,8 @@ public class WxMessageServiceImpl implements WxMessageService {
             StopWatch stopWatch = new StopWatch("chatgpt");
             stopWatch.start();
             try {
-                result = ChatGptApi.getBatchChat(textMessage.getToUserName(), content);
+//                result = ChatGptApi.getBatchChat(textMessage.getToUserName(), content);
+                result = content;
                 stopWatch.stop();
             }catch (Exception e){
                 log.error("异常",e);
